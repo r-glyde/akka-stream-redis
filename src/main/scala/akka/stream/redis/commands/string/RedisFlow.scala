@@ -26,6 +26,4 @@ trait RedisFlow {
       .mapAsync(settings.parallelism)(keys => connection.async().mget(keys: _*).toScala)
       .flatMapConcat(kvs => Source(kvs.asScala.map(_.getValue).toList))
 
-
-
 }
